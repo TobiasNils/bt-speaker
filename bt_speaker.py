@@ -166,13 +166,13 @@ def setup_bt():
     def connect():
         command = config.get('bt_speaker', 'connect_command')
         if not command: return
-        subprocess.Popen(['/bin/sh', list(command)]).communicate()
+        subprocess.Popen(['/bin/sh']+list(command)).communicate()
 
     def disconnect():
         sink.close_transport()
         command = config.get('bt_speaker', 'disconnect_command')
         if not command: return
-        subprocess.Popen(['/bin/sh', list(command)]).communicate()
+        subprocess.Popen(['/bin/sh']+list(command)).communicate()
 
     def track(data):
         command = config.get('bt_speaker', 'track_command')
@@ -184,7 +184,7 @@ def setup_bt():
         # dirty hack to prevent unnecessary double execution
         if str(env) == track.last: return
         track.last = str(env)
-        subprocess.Popen(['/bin/sh', list(command)], env=env).communicate()
+        subprocess.Popen(['/bin/sh']+list(command), env=env).communicate()
 
     track.last = None
 
