@@ -37,8 +37,7 @@ class PipedSBCAudioSinkWithAlsaVolumeControl(SBCAudioSink):
     def startup(self):
         # Start process
         self.process = subprocess.Popen(
-            config.get('bt_speaker', 'play_command'),
-            shell=True,
+            config.get('bt_speaker', 'play_command').split(' '),
             bufsize=2560,
             stdin=subprocess.PIPE
         )
