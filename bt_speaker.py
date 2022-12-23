@@ -161,7 +161,7 @@ def setup_bt():
     def startup():
         command = config.get('bt_speaker', 'startup_command')
         if not command: return
-        subprocess.Popen(['/bin/sh', list(command)]).communicate()
+        subprocess.Popen(['/bin/sh']+list(command)).communicate()
 
     def connect():
         command = config.get('bt_speaker', 'connect_command')
